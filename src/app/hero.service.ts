@@ -67,17 +67,11 @@ export class HeroService {
     );
   }
 
-  /** PUT: update the hero on the server */
-  updateHero(hero: Hero): Observable<any> {
-    return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${hero.id}`)),
-      catchError(this.handleError<any>('updateHero'))
-    );
-  }
-
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
+
+    //////// Save methods //////////
 
   /** POST: add a new hero to the server */
   addHero(hero: Hero): Observable<Hero> {
@@ -97,6 +91,14 @@ export class HeroService {
         catchError(this.handleError<Hero>(`deleteHero`))
       );
     }
+
+    /** PUT: update the hero on the server */
+    updateHero(hero: Hero): Observable<any> {
+    return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+      tap(_ => this.log(`updated hero id=${hero.id}`)),
+      catchError(this.handleError<any>('updateHero'))
+    );
+  }
 
     /* GET heroes whose name constains search term */
     searchHeroes(term: string): Observable<Hero[]> {
