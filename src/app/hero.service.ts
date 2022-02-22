@@ -21,6 +21,7 @@ export class HeroService {
 
     private heroesUrl = 'api/heroes';
   
+  /** GET heroes from the server */
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
